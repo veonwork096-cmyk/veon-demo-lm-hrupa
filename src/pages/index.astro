@@ -1,0 +1,273 @@
+---
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/ysabeau-office";
+import manropeCyr from "@fontsource-variable/manrope/files/manrope-cyrillic-wght-normal.woff2?url";
+import Base from "../layouts/Base.astro";
+import "../styles/home.css";
+import Section from "../components/Section.astro";
+import FutureLink from "../components/FutureLink.astro";
+import Icon from "../components/Icon.astro";
+
+// Facts: veon/client.json (C-014, C-D01, C-D03, C-D04, C-D11), Google Maps card checked 13.11.2026.
+const TEL = "tel:+380678559125";
+const PHONE = "067 855 9125";
+const ADDRESS = "вул. Володимира Лендьєла, 24";
+const CITY = "Ужгород";
+const HOURS = "Пн–Сб 09:00–20:00";
+const MAPS = "https://www.google.com/maps/place/LM+GROUP/@48.637305,22.2836061,17z";
+const NEW_TAB = "(відкриється в новій вкладці)";
+const SOON = "Розділ у розробці";
+
+const services = [
+  { name: "Імплантація зубів", note: "Спеціалізація клініки" },
+  { name: "Естетична стоматологія", note: "Спеціалізація клініки" },
+  { name: "Протезування", note: "Спеціалізація клініки" },
+  { name: "Вініри", note: "У переліку послуг клініки" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "ЛМ Група",
+  alternateName: "LM GROUP",
+  telephone: "+380678559125",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS,
+    addressLocality: CITY,
+    addressCountry: "UA",
+  },
+  openingHours: "Mo-Sa 09:00-20:00",
+  openingHoursSpecification: [{
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "09:00",
+    closes: "20:00",
+  }],
+  sameAs: [MAPS],
+};
+---
+<Base
+  lang="uk"
+  title="Стоматологія «ЛМ Група» в Ужгороді — імплантація, вініри"
+  description="Стоматологічна клініка в Ужгороді: імплантація, естетична стоматологія, протезування, вініри. вул. Лендьєла, 24. Запис: 067 855 9125."
+>
+  <Fragment slot="head">
+    <link rel="preload" as="font" type="font/woff2" href={manropeCyr} crossorigin />
+    <meta name="theme-color" content="#123254" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <header class="site-header" slot="header" data-header>
+    <div class="container site-header__bar">
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">ЛМ Група</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Головне меню" data-nav>
+        <ul class="site-nav__list" data-rec="R-U08">
+          <li><a class="site-nav__link" href="#poslugy" data-nav-link>Послуги</a></li>
+          <li><FutureLink note={SOON} class="site-nav__link">Лікарі</FutureLink></li>
+          <li><FutureLink note={SOON} class="site-nav__link">Ціни</FutureLink></li>
+          <li><FutureLink note={SOON} class="site-nav__link">Про клініку</FutureLink></li>
+          <li><a class="site-nav__link" href="#zapys" data-nav-link>Контакти</a></li>
+          <li class="site-nav__call">
+            <a class="btn btn--primary btn--lg btn--block" href={TEL}>
+              <Icon name="phone" class="btn__icon" />
+              <span>Зателефонувати</span>
+              <span class="btn__num">{PHONE}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary header-call" href={TEL} aria-label={`Зателефонувати ${PHONE}`}>
+        <Icon name="phone" class="btn__icon" />
+        <span class="btn__num">{PHONE}</span>
+      </a>
+      <a class="icon-btn header-call-icon" href={TEL} aria-label={`Зателефонувати ${PHONE}`} data-rec="R-U05">
+        <Icon name="phone" size={22} />
+      </a>
+      <button class="icon-btn icon-btn--ghost menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+        <Icon name="menu" size={24} class="menu-toggle__open" />
+        <Icon name="close" size={24} class="menu-toggle__close" />
+        <span class="visually-hidden" data-menu-label>Відкрити меню</span>
+      </button>
+    </div>
+  </header>
+
+  <Section id="hero" rec="R-U01,R-U02,GA-R07" class="hero">
+    <div class="container hero__grid">
+      <div class="hero__square on-primary">
+        <h1 class="hero__title" data-rec="R-U03,R-S03,R-S04"><span>Стоматологічна клініка</span> <span>«ЛМ Група»</span> <span>в Ужгороді</span></h1>
+        <a class="btn btn--accent btn--lg hero__cta" href={TEL} data-rec="R-U05,GA-R01">
+          <Icon name="phone" class="btn__icon" />
+          <span>Зателефонувати</span>
+          <span class="btn__num">{PHONE}</span>
+        </a>
+      </div>
+      <div class="hero__aside">
+        <p class="hero__slogan">Здоров’я і краса у кращих руках.</p>
+        <p class="hero__where" data-rec="R-U06,GA-R01"><span>{ADDRESS}</span> <span aria-hidden="true">·</span> <span>{HOURS}</span></p>
+        <a class="text-link" href="#poslugy">
+          <span>Послуги</span>
+          <Icon name="arrow-down" class="text-link__icon" />
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="poslugy" rec="R-U08" class="poslugy">
+    <div class="container">
+      <h2 class="section-title poslugy__title">Послуги клініки</h2>
+      <ul class="poslugy__grid">
+        {services.map((s, i) => (
+          <li class="tile" data-reveal style={`--i: ${i}`}>
+            <p class="tile__note">{s.note}</p>
+            <div class="tile__body">
+              <h3 class="tile__title">{s.name}</h3>
+              <FutureLink note={SOON} class="tile__more">
+                <span>Детальніше</span>
+                <Icon name="arrow-right" class="tile__more-icon" />
+              </FutureLink>
+            </div>
+          </li>
+        ))}
+        <li class="poslugy__slot-item" data-reveal style="--i: 4">
+          <FutureLink note={SOON} class="poslugy__slot">
+            <span class="poslugy__slot-name">Інші послуги</span>
+            <span class="poslugy__slot-text">Повний перелік додасть клініка</span>
+          </FutureLink>
+        </li>
+      </ul>
+      <div class="poslugy__note">
+        <p class="poslugy__price">Вартість — уточнюйте за телефоном.</p>
+        <p class="poslugy__ask">Не знайшли послугу? Зателефонуйте — підкажемо.</p>
+        <a class="btn btn--primary poslugy__call" href={TEL} aria-label={`Зателефонувати ${PHONE}`}>
+          <Icon name="phone" class="btn__icon" />
+          <span class="btn__num">{PHONE}</span>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="dovira" class="dovira">
+    <div class="container dovira__inner">
+      <h2 class="section-title dovira__title">Чому нам довіряють</h2>
+      <div class="dovira__rating">
+        <p class="dovira__score"><span class="dovira__num">4,9</span> <span class="visually-hidden">з 5</span></p>
+        <p class="dovira__source">Google Maps · 264 відгуки</p>
+        <p class="dovira__date">за даними Google Maps, 13.11.2026</p>
+        <a class="text-link dovira__ext" href={MAPS} target="_blank" rel="noopener" data-rec="R-S05,SM-R004">
+          <span>Відгуки в Google</span>
+          <Icon name="external" class="text-link__icon" />
+          <span class="visually-hidden">{NEW_TAB}</span>
+        </a>
+      </div>
+      <div class="dovira__facts">
+        <ul class="dovira__list">
+          <li>
+            <p class="dovira__fact">Гарантія на послуги</p>
+            <p class="dovira__sub">Умови уточнюйте в клініці.</p>
+          </li>
+          <li>
+            <p class="dovira__fact">{HOURS}</p>
+            <p class="dovira__sub">Неділя — вихідний.</p>
+          </li>
+          <li>
+            <p class="dovira__fact">Резервне живлення</p>
+          </li>
+        </ul>
+        <ul class="dovira__links" data-rec="R-U08">
+          <li>
+            <FutureLink note={SOON} class="dovira__link">
+              <span>Лікарі</span>
+              <Icon name="arrow-right" class="dovira__link-icon" />
+            </FutureLink>
+          </li>
+          <li>
+            <FutureLink note={SOON} class="dovira__link">
+              <span>Про клініку</span>
+              <Icon name="arrow-right" class="dovira__link-icon" />
+            </FutureLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="zapys" class="zapys">
+    <div class="container zapys__grid">
+      <div class="zapys__text">
+        <h2 class="section-title">Запис за телефоном</h2>
+        <h3 class="zapys__subtitle">Що сказати під час дзвінка</h3>
+        <ul class="zapys__list">
+          <li>яка послуга цікавить або що турбує;</li>
+          <li>зручний день і час.</li>
+        </ul>
+        <dl class="zapys__facts" data-rec="R-U06,R-S05">
+          <div>
+            <dt>Адреса</dt>
+            <dd><address>{ADDRESS}, {CITY}</address></dd>
+          </div>
+          <div>
+            <dt>Графік роботи</dt>
+            <dd>{HOURS}<br /><span class="zapys__muted">Неділя — вихідний</span></dd>
+          </div>
+        </dl>
+        <a class="text-link zapys__map" href={MAPS} target="_blank" rel="noopener" data-rec="R-U06,R-S05">
+          <span>Маршрут у Google Maps</span>
+          <Icon name="external" class="text-link__icon" />
+          <span class="visually-hidden">{NEW_TAB}</span>
+        </a>
+      </div>
+      <div class="zapys__square on-primary" data-reveal data-reveal-kind="clip" data-zapys-square>
+        <p class="zapys__label">Телефон для запису</p>
+        <a class="zapys__number" href={TEL} aria-label={`Зателефонувати ${PHONE}`}><span>067</span> <span>855 9125</span></a>
+        <a class="btn btn--accent btn--lg zapys__cta" href={TEL} aria-label={`Зателефонувати ${PHONE}`}>
+          <Icon name="phone" class="btn__icon" />
+          <span>Зателефонувати</span>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Fragment slot="footer">
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div class="site-footer__brand">
+          <a class="brand" href="#top">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__name">ЛМ Група</span>
+          </a>
+          <p class="site-footer__slogan">Стоматологічна клініка в Ужгороді</p>
+        </div>
+        <div class="site-footer__contact">
+          <a class="site-footer__tel" href={TEL}>{PHONE}</a>
+          <p>{ADDRESS}, {CITY}</p>
+          <p>{HOURS}, неділя — вихідний</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Розділи сайту">
+          <ul data-rec="R-U08">
+            <li><FutureLink note={SOON} class="site-footer__link">Послуги</FutureLink></li>
+            <li><FutureLink note={SOON} class="site-footer__link">Лікарі</FutureLink></li>
+            <li><FutureLink note={SOON} class="site-footer__link">Ціни</FutureLink></li>
+            <li><FutureLink note={SOON} class="site-footer__link">Про клініку</FutureLink></li>
+            <li><FutureLink note={SOON} class="site-footer__link">Політика конфіденційності</FutureLink></li>
+          </ul>
+        </nav>
+        <p class="site-footer__copy">© ЛМ Група</p>
+      </div>
+    </footer>
+    <div class="callbar on-primary" data-callbar data-rec="R-U05">
+      <a class="btn btn--accent btn--lg btn--block" href={TEL}>
+        <Icon name="phone" class="btn__icon" />
+        <span>Зателефонувати</span>
+        <span class="btn__num">{PHONE}</span>
+      </a>
+    </div>
+  </Fragment>
+</Base>
+
+<script>
+  import "../scripts/home";
+</script>

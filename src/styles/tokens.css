@@ -1,0 +1,51 @@
+/* Hallmark · theme: custom · job: book · idea: "Квадрат LM — кабінет на сторінці: синій квадрат знака відкриває і закриває сторінку стоматологічної клініки" · vibe: "світла клініка, фірмовий синій квадрат, шафранова дія" · paper: #F5F7FA · accent: #F2A541 (on navy only) · faces: Manrope / Ysabeau Office · hero: синій квадрат зліва з H1 і кнопкою дзвінка, слоган і адреса на папері праворуч по нижньому краю; на 390 квадрат на всю ширину · posture: light/geometric-sans/chromatic-amber · surface: navy square #123254 declared */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery (no client photos), answered with the brand square as the only solid form and large type */
+/* Hallmark · waive 39b · hero and zapys call buttons 56px, concept.md §8 "Кнопки: висота 56 (hero, zapys)" · the single conversion action, large thumb target on 390 */
+/* Hallmark · answered F4 · navy and saffron fills are one action (call): saffron only on the navy square, navy on paper, per concept.md colour roles */
+/* Hallmark · dismissed F19 · two faces with fixed roles per concept.md: Manrope 700/800 for display, Ysabeau Office 400/600 for text and controls */
+/* Client design tokens from design/concept.md (veon-concept colors, fonts). One token system. */
+:root {
+  /* colour roles */
+  --color-bg: #F5F7FA;
+  --color-surface: #E8EDF4;
+  --color-text: #0D1A2B;
+  --color-text-muted: #4A5A70;
+  --color-primary: #123254;
+  --color-on-primary: #F5F7FA;
+  --color-on-primary-muted: #A9BBD3;
+  --color-accent: #F2A541; /* only on --color-primary */
+  --color-accent-ink: var(--color-primary);
+  --color-border-slot: #7A8BA3;
+  --color-hairline: #C9D3E0;
+  --color-primary-hover: color-mix(in oklab, var(--color-primary) 82%, var(--color-text));
+  --color-accent-hover: color-mix(in oklab, var(--color-accent) 86%, var(--color-text));
+  --shadow-bar: 0 -4px 16px color-mix(in srgb, var(--color-primary) 12%, transparent);
+
+  /* type */
+  --font-display: "Manrope Variable", "Manrope", system-ui, sans-serif;
+  --font-body: "Ysabeau Office Variable", "Ysabeau Office", system-ui, sans-serif;
+  --fs-h1: clamp(2.25rem, 4.4vw + 0.5rem, 4.75rem);
+  --fs-h2: clamp(2rem, 2.6vw + 0.75rem, 3rem);
+  --fs-num: clamp(2.25rem, 5vw + 0.5rem, 5.5rem);
+  --fs-tile: 1.75rem;
+  --fs-lead: clamp(1.5rem, 1.2vw + 1rem, 2.25rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+
+  /* space (4/8 scale) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px;
+  --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px; --s-11: 160px;
+  --space: clamp(20px, 5vw, 80px);
+  --gutter: 24px;
+  --container: 1360px;
+  --header-h: 60px;
+
+  /* shape and motion */
+  --radius: 4px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 400ms;
+  --dur-fast: 150ms;
+}
+@media (min-width: 48rem) {
+  :root { --header-h: 72px; }
+}
